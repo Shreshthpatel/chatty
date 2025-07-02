@@ -28,17 +28,17 @@ async function sha256(message) {
 }
 
 // Login with password check
-async function login() {
+function login() {
   const name = document.getElementById("nameInput").value.trim();
   const password = document.getElementById("passwordInput").value.trim();
 
   if (!name || !password) {
-    alert("Please enter both your name and password.");
+    alert("Please enter BOTH your name and password.");
     return;
   }
 
-  const hashed = await sha256(password);
-  if (hashed !== PASSWORD_HASH) {
+  // ✅ Plain text password check:
+  if (password !== "sunflower") {
     alert("Incorrect password. Access denied.");
     return;
   }
@@ -48,6 +48,7 @@ async function login() {
   document.getElementById("chat").style.display = "block";
   listenForMessages();
 }
+
 
 // Send message
 function sendMessage() {
